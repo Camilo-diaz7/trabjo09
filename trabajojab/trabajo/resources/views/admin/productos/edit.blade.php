@@ -34,10 +34,10 @@
           <label for="categoria" class="form-label">Categoría</label>
           <select id="categoria" name="categoria" class="form-select">
              <option value="">-- Seleccionar --</option>
-             <option value="comestible" {{ old('categoria', $producto->categoria) == 'comestible' ? 'selected' : '' }}>Comestible</option>
-             <option value="licor" {{ old('categoria', $producto->categoria) == 'licor' ? 'selected' : '' }}>Licor</option>
+             <option value="Cura" {{ old('categoria', $producto->categoria) == 'Cura' ? 'selected' : '' }}>Cura</option>
+             <option value="licor" {{ old('categoria', $producto->categoria) == 'Medicamentos' ? 'selected' : '' }}>Medicamentos</option>
           </select>
-       </div>
+       </div>  
 
        <div class="mb-3">
           <label for="precio" class="form-label">Precio *</label>

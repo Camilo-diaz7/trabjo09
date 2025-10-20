@@ -13,6 +13,7 @@ return new class extends Migration
             $table->mediumIncrements('id');
             $table->string('nombre');
             $table->string('categoria')->nullable(); // comestible o licor
+            $table->string('descripcion')->nullable();
             $table->timestamps();
         });
     }

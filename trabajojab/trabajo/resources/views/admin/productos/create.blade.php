@@ -52,8 +52,10 @@
           <label for="categoria" class="form-label">Categoría</label>
           <select id="categoria" name="categoria" class="form-select">
              <option value="">-- Seleccionar --</option>
-             <option value="comestible" {{ old('categoria') == 'comestible' ? 'selected' : '' }}>Comestible</option>
-             <option value="licor" {{ old('categoria') == 'licor' ? 'selected' : '' }}>Licor</option>
+             <option value="Cura" {{ old('categoria') == 'Curas' ? 'selected' : '' }}>Curas</option>
+            <option value="Pastas" {{ old('categoria') == 'Pastas' ? 'selected' : '' }}>Medicamentos</option>
+
+                                 
           </select>
           @error('categoria')
              <div class="text-danger small">{{ $message }}</div>

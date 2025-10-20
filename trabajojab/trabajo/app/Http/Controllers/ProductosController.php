@@ -44,7 +44,7 @@ class ProductosController extends Controller
             'nombre'=>'required|string|max:50',
             'precio'=>'required|numeric',
             'tipo_productos_id'=>'nullable|exists:tipo_productos,id',
-            'categoria'=>'nullable|in:comestible,licor'
+            'categoria'=>'nullable|in:Cura,Medicamentos',
         ]);
 
         // Crear producto con los datos validados. $fillable en el modelo controla qué campos son masivos.
