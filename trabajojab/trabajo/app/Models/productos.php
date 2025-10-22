@@ -15,6 +15,7 @@ class productos extends Model
     protected $fillable=[
         'nombre',
         'precio',
+        'stock',
         'tipo_productos_id', // FK opcional que apunta a tipo_productos.id
          // campo libre para 'comestible' o 'licor'
     // Campos que se pueden asignar masivamente

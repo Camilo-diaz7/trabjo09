@@ -42,22 +42,18 @@
                         <tr>
                             <td>{{ $producto->id }}</td>
                             <td>
-                                @if(!empty($producto->imagen_url))
-                                    <div class="d-flex align-items-center">
-                                        <img src="{{ $producto->imagen_url }}" alt="" style="width:42px;height:42px;object-fit:cover;border-radius:4px;margin-right:8px;">
-                                        <div>
+                                 <div>
                                             <strong>{{ $producto->nombre }}</strong>
                                             @if($producto->slug)
                                                 <div class="text-muted small">{{ $producto->slug }}</div>
                                             @endif
-                                        </div>
                                     </div>
                                 @else
                                     <strong>{{ $producto->nombre }}</strong>
                                 @endif
                             </td>
-                            <td>{{ $producto->categoria?->nombre ?? '—' }}</td>
-                            <td>{{ isset($producto->precio) ? number_format($producto->precio, 2) . ' €' : '—' }}</td>
+                            <td>{{ $producto->tipo_productos_id?->nombre ?? '—' }}</td>
+                            <td>{{ isset($producto->precio) ? number_format($producto->precio, 9) . ' €' : '—' }}</td>
                             <td>{{ $producto->stock ?? '—' }}</td>
                             <td>
                                 @if($producto->activo ?? false)

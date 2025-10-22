@@ -12,7 +12,7 @@ return new class extends Migration
         Schema::create('tipo_productos', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->string('nombre');
-            $table->string('categoria')->nullable(); // comestible o licor
+            $table->string('tipo_prodcutos')->nullable(); // comestible o licor
             $table->timestamps();
         });
     }
