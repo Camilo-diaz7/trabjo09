@@ -13,7 +13,7 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-    if (Auth::check()===true && Auth::user()->rol==='admin' ) {
+    if (Auth::check()===false && Auth::user()->rol==='admin' ) {
         return $next($request);
     }
 
