@@ -26,7 +26,7 @@ $checkAdmin = function () {
 // Rutas de administrador
 Route::prefix('admin')->group(function() use ($checkAdmin) {
     Route::get('/', function() use ($checkAdmin) {
-        if ($response = $checkAdmin()) return $response;
+        if ($response = $checkAdmin()!==true) return $response;
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
