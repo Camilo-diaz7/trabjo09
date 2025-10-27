@@ -16,7 +16,7 @@ class ProductosController extends Controller
         // Devuelve una lista paginada de productos.
         // Se ordena por id descendente para mostrar primero los más recientes.
         // La vista 'admin.productos.index' espera una variable $productos que soporte ->links()
-        $productos = productos::orderBy('id','desc')->paginate(15);
+        $productos = productos::with('tipoProductos')->orderBy('id','desc')->paginate(15);
         return view('admin.productos.index', compact('productos'));
         //
     }
@@ -43,8 +43,8 @@ class ProductosController extends Controller
         $request->validate([
             'nombre'=>'required|string|max:50',
             'precio'=>'required|numeric',
-            'tipo_productos_id'=>'nullable|exists:tipo_productos,id',
-            'categoria'=>'nullable|in:Cura,Medicamentos',
+           'tipo_productos_id'=>'nullable|exists:tipo_productos_id',
+             'tipo_productos_id'=>'nullable|integer|exists:tipo_productos,id',
         ]);
 
         // Crear producto con los datos validados. $fillable en el modelo controla qué campos son masivos.
@@ -88,7 +88,7 @@ class ProductosController extends Controller
         $request->validate([
             'nombre'=>'required|string|max:50',
             'precio'=>'required|numeric',
-            'tipo_productos_id'=>'nullable|exists:tipo_productos,id',
+             'tipo_productos_id'=>'nullable|integer|exists:tipo_productos,id',
         ]);
         $producto->update($request->all());
         return redirect()->route('admin.productos.index')->with('success','Producto actualizado');

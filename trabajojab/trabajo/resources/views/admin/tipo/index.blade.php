@@ -3,6 +3,7 @@
 @section('content')
 <div class="container py-4">
     <h1 class="h3 mb-4">Tipos de Productos</h1>
+
     {{-- Formulario para crear nuevo tipo --}}
     <div class="card mb-4">
         <div class="card-header">Crear nuevo tipo</div>
@@ -24,13 +25,13 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="tipo_productos_id" class="form-label">Categoría</label>
-                    <select id="tipo_productos_id" name="tipo_productos_id" class="form-select">
+                    <label for="tipo_producto_id" class="form-label">Categoría</label>
+                    <select id="tipo_producto_id" name="tipo_producto_id" class="form-select">
                         <option value="">-- Seleccionar --</option>
-                        <option value="comestible">Comestible</option>
-                        <option value="licor">Licor</option>
+                        <option value={{ old('tipo_productso_id') == 'curas' ? 'selected' : '' }}>curas</option>
+                        <option value={{ old('tipo_producto_id') == 'medicamentos' ? 'selected' : '' }}>Medicamentos</option>
                     </select>
-                    @error('tipo_productos_id')
+                    @error('tipo_producto_id')
                         <div class="text-danger small">{{ $message }}</div>
                     @enderror
                 </div>
@@ -42,19 +43,9 @@
     @foreach($tipo as $t)
         <div class="card mb-3">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <div>
-                    <strong>{{ $t->nombre }}</strong>
-                    <span class="text-muted ms-2">ID: {{ $t->id }}</span>
-                    <span class="badge bg-info ms-2">{{ $t->tipo_productos_id ?? 'Sin categoría' }}</span>
-                </div>
-                <div class="d-flex align-items-center">
-                    {{-- Botón eliminar tipo --}}
-                    <form action="{{ route('admin.tipo_productos.destroy', $t) }}" method="POST" class="d-inline-block" onsubmit="return confirm('¿Eliminar este tipo? Esta acción no se puede deshacer.');">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-sm btn-outline-danger">Eliminar</button>
-                    </form>
-                </div>
+                <strong>{{ $t->nombre }}</strong>
+                <span class="text-muted">ID: {{ $t->id }}</span>
+                <span class="badge bg-info">{{ $t->categoria ?? 'Sin categoría' }}</span>
             </div>
             <div class="card-body">
                 @if($t->productos && $t->productos->count())
@@ -71,11 +62,13 @@
                         <tbody>
                             @foreach($t->productos as $producto)
                                 <tr>
-                                    <td>{{ $producto->id }}</td>
-                                    <td>{{ $producto->nombre }}</td>
-                                    <td>{{ $producto->tipo_productos_id ?? '—' }}</td>
-                                    <td>{{ isset($producto->precio) ? number_format($producto->precio,2) : '—' }}</td>
-                                    <td>
+                                               <td>
+                                {{ $producto->tipoProductos?->nombre ?? '—' }}
+                                @if($producto->tipoProductos?->descripcion)
+                                    <small class="d-block text-muted">{{ $producto->tipoProductos->descripcion }}</small>
+                                @endif
+                            </td>
+                            <td>{{ $producto->stock ?? '—' }}</td>
                                         {{-- Formulario para reasignar producto a otro tipo --}}
                                         <form action="{{ route('admin.productos.update', $producto) }}" method="POST" class="d-inline-flex align-items-center">
                                             @csrf
@@ -88,6 +81,15 @@
                                             </select>
                                             <button class="btn btn-sm btn-primary">Mover</button>
                                         </form>
+                                    </td>
+                                    <td>
+                                       <div class="d-flex align-items-center">
++                    <form action="{{ route('admin.tipo_productos.destroy', $t) }}" method="POST" class="d-inline-block" onsubmit="return confirm('¿Eliminar este tipo? Esta acción no se puede deshacer.');">
++                        @csrf
++                        @method('DELETE')
++                        <button class="btn btn-sm btn-outline-danger">Eliminar</button>
++                    </form>
++                </div>
                                     </td>
                                 </tr>
                             @endforeach

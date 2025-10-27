@@ -28,7 +28,7 @@ class productos extends Model
      * Relación: Un producto pertenece a un tipo de producto (opcional).
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-        return $this->belongsTo(tipo_productos::class, 'tipo_productos_id');
+        return $this->belongsTo(\App\Models\tipo_productos::class, 'tipo_productos_id');
     }
 
 }

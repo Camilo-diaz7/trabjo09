@@ -24,18 +24,14 @@
           <input type="text" id="nombre" name="nombre" class="form-control" value="{{ old('nombre', $producto->nombre) }}" required>
        </div>
 
-       <div class="mb-3">
-          <label for="slug" class="form-label">Slug</label>
-          <input type="text" id="slug" name="slug" class="form-control" value="{{ old('slug', $producto->slug) }}">
-       </div>
 
        {{-- Categoria (comestible o licor) --}}
        <div class="mb-3">
-          <label for="categoria" class="form-label">Categoría</label>
-          <select id="categoria" name="categoria" class="form-select">
+          <label for="tipo_producto_id" class="form-label">Categoría</label>
+          <select id="tipo_producto_id" name="categoria" class="form-select">
              <option value="">-- Seleccionar --</option>
-             <option value="Cura" {{ old('categoria', $producto->categoria) == 'Cura' ? 'selected' : '' }}>Cura</option>
-             <option value="licor" {{ old('categoria', $producto->categoria) == 'Medicamentos' ? 'selected' : '' }}>Medicamentos</option>
+             <option value="curas" {{ old('tipo_producto_id', $producto->categoria) == 'curas' ? 'selected' : '' }}>Cura</option>
+             <option value="medicamentos" {{ old('tipo_producto_id', $producto->categoria) == 'medicamentos' ? 'selected' : '' }}>Medicamentos</option>
           </select>
        </div>  
 

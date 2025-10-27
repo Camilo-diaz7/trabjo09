@@ -30,7 +30,7 @@
                         <tr>
                             <th>#</th>
                             <th>Nombre</th>
-                            <th>Categoría</th>
+                             <th>Categoría (Tipo)</th>
                             <th>Precio</th>
                             <th>Stock</th>
                             <th>Estado</th>
@@ -39,21 +39,10 @@
                     </thead>
                     <tbody>
                         @foreach($productos as $producto)
-                        <tr>
                             <td>{{ $producto->id }}</td>
-                            <td>
-                                 <div>
-                                            <strong>{{ $producto->nombre }}</strong>
-                                            @if($producto->slug)
-                                                <div class="text-muted small">{{ $producto->slug }}</div>
-                                            @endif
-                                    </div>
-                                @else
-                                    <strong>{{ $producto->nombre }}</strong>
-                                @endif
-                            </td>
-                            <td>{{ $producto->tipo_productos_id?->nombre ?? '—' }}</td>
-                            <td>{{ isset($producto->precio) ? number_format($producto->precio, 9) . ' €' : '—' }}</td>
+                            <td>{{$producto->nombre }}</td>
+                            <td>{{ $t->categoria ?? ($producto->tipoProductos?->categoria ?? '—') }}</td>
+                            <td>{{ isset($producto->precio) ? number_format($producto->precio, 2) . ' €' : '—' }}</td>
                             <td>{{ $producto->stock ?? '—' }}</td>
                             <td>
                                 @if($producto->activo ?? false)

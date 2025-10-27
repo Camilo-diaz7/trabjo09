@@ -14,7 +14,7 @@ class TipoProductosController extends Controller
      */
     public function index()
     {
-        $tipo = tipo_productos::with('productos')->get();
+        $tipo = \App\Models\tipo_productos::with('productos')->get();
         return view('admin.tipo.index', compact('tipo'));
     }
 
@@ -38,11 +38,11 @@ class TipoProductosController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:100',
             'descripcion' => 'nullable|string|max:100',
-            'categoria' => 'nullable|in:comestible,licor',
+            'categoria' => 'nullable|in:curas,medicamentos',
         ]);
 
         tipo_productos::create($request->only(['nombre','descripcion','categoria']));
-        return redirect()->route('admin.tipo_producto.index')->with('success','Tipo de producto creado correctamente');
+        return redirect()->route('admin.tipo_productos.index')->with('success','Tipo de producto creado correctamente');
     }
 
     /**
@@ -73,7 +73,7 @@ class TipoProductosController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:100',
             'descripcion' => 'nullable|string|max:100',
-            'categoria' => 'nullable|in:Pastas,Cura',
+            'categoria' => 'nullable|in:curas,medicamentos',
         ]);
 
         $tipo_productos->update($request->only(['nombre','descripcion','categoria']));

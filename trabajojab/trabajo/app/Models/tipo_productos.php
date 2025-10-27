@@ -20,7 +20,12 @@ class tipo_productos extends Model
      * Relación: Un tipo de producto tiene muchos productos.
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function productos(){
-        return $this->hasMany(productos::class,'tipo_productos_id');
-    }
+
+    public function productos()
+    {
+        // Al estar en el mismo namespace App\Models, podemos referirnos directamente a la clase
+       return $this->hasMany(productos::class, 'tipo_productos_id');
+   }
+
+
 }

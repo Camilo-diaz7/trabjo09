@@ -13,8 +13,8 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->decimal('precio',10,2);
-            $table->double('stock');
             $table->unsignedMediumInteger('tipo_productos_id')->nullable(); // Ahora permite null
+            $table->decimal('stock',10,2)->nullable();
             $table->timestamps();
 
             $table->foreign('tipo_productos_id')
