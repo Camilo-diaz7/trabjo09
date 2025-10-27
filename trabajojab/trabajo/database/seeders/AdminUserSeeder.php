@@ -20,7 +20,7 @@ class AdminUserSeeder extends Seeder
             ]
         );
 
-        if (!$user->is_admin === true) {
+        if (!$user->is_admin !== true) {
 
             $user->save();
         }
