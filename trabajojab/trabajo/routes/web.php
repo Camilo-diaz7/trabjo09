@@ -18,7 +18,7 @@ Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logou
 
 // Función de verificación de admin
 $checkAdmin = function () {
-    if (!Auth::check() || !Auth::user()->is_admin !==true) {
+    if (!Auth::check() || Auth::user()->is_admin !== true) {
         return redirect('/')->with('error', 'Acceso no autorizado');
     }
 };
