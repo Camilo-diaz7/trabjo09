@@ -42,7 +42,7 @@ class TipoProductosController extends Controller
         ]);
 
         tipo_productos::create($request->only(['nombre','descripcion','categoria']));
-        return redirect()->route('admin.tipo.index')->with('success','Tipo de producto creado correctamente');
+        return redirect()->route('admin.tipo_producto.index')->with('success','Tipo de producto creado correctamente');
     }
 
     /**
@@ -50,7 +50,7 @@ class TipoProductosController extends Controller
      */
     public function show(tipo_productos $tipo_productos)
     {
-        return view('admin.tipo.show', compact('tipo_productos'));
+        return view('admin.tipo_producto.show', compact('tipo_productos'));
     }
 
     /**
@@ -58,7 +58,7 @@ class TipoProductosController extends Controller
      */
     public function edit(tipo_productos $tipo_productos)
     {
-        return view('admin.tipo.edit', compact('tipo_productos'));
+        return view('admin.tipo_producto.edit', compact('tipo_productos'));
     }
 
     /**
@@ -73,7 +73,7 @@ class TipoProductosController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:100',
             'descripcion' => 'nullable|string|max:100',
-            'categoria' => 'nullable|in:comestible,licor',
+            'categoria' => 'nullable|in:Pastas,Cura',
         ]);
 
         $tipo_productos->update($request->only(['nombre','descripcion','categoria']));
