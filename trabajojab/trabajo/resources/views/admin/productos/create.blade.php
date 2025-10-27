@@ -34,15 +34,16 @@
           @enderror
           <div class="form-text">El nombre del producto. A partir de aquí se puede generar el slug automáticamente.</div>
        </div>
+
+      
+
        {{-- Categoria (comestible o licor) --}}
        <div class="mb-3">
           <label for="tipo_productos_id" class="form-label">Categoría</label>
           <select id="tipo_productos_id" name="tipo_productos_id" class="form-select">
              <option value="">-- Seleccionar --</option>
-             <option value={{ old('tipo_productso_id') == 'curas' ? 'selected' : '' }}>Curas</option>
-            <option value= {{ old('tipo_producto_id') == 'medicamentos' ? 'selected' : '' }}>Medicamentos</option>
-
-                                 
+             <option value="comestible" {{ old('tipo_productos_id') == 'comestible' ? 'selected' : '' }}>Comestible</option>
+             <option value="licor" {{ old('tipo_producto_id') == 'licor' ? 'selected' : '' }}>Licor</option>
           </select>
           @error('tipo_productos_id')
              <div class="text-danger small">{{ $message }}</div>
@@ -63,7 +64,7 @@
        {{-- Precio --}}
        <div class="mb-3">
           <label for="precio" class="form-label">Precio *</label>
-          <input type="number" id="precio" name="precio" step="0.01" min="0" class="form-control" value="{{ old('precio') ?? '0.00' }}" required>
+          <input type="number" id="precio" name="precio" step="0.1" min="0" class="form-control" value="{{ old('precio') ?? '0.00' }}" required>
           @error('precio')
              <div class="text-danger small">{{ $message }}</div>
           @enderror
