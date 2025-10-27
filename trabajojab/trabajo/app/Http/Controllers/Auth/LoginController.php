@@ -19,10 +19,9 @@ class LoginController extends Controller
     {
         $user = Auth::user();
 
-        if ($user && $user->is_admin) {  // Cambiado de rol === 'isadmin' a is_admin
+        if (is_object($user) && $user->is_admin === true) {
             return route('admin.dashboard');
         }
-
         return '/home';
     }
 
